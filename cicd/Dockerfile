@@ -43,6 +43,8 @@ FROM alpine:3.24.1
 ARG GO_APP
 ENV GO_APP=${GO_APP}
 
+RUN apk upgrade --no-cache
+
 COPY --from=deps --chmod=755 /go/bin/${GO_APP} /usr/local/bin/${GO_APP}
 
 COPY --from=deps /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
